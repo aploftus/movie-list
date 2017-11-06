@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import MovieList from './MovieList.js';
+
+var movies = [
+  {title: 'Mean Girls'},
+  {title: 'Hackers'},
+  {title: 'The Grey'},
+  {title: 'Sunshine'},
+  {title: 'Ex Machina'},
+];
 
 class App extends Component {
   render() {
@@ -8,11 +17,14 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Movie List</h1>
         </header>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          Here is a list of movies:
         </p>
+        <div className="MovieList.js">
+          <MovieList movies={movies} />
+        </div>
       </div>
     );
   }

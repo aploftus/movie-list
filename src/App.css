@@ -26,3 +26,16 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+/* ===== Movie List ============== */
+
+.movie-list {
+
+}
+
+.movie-title {
+  border: 2px solid grey;
+  width: 25%;
+  padding: 10px;
+  margin: 0 auto;
+}
