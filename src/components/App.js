@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import logo from '../logo.svg';
+import '../App.css';
 import MovieList from './MovieList.js';
+import Search from './Search.js';
 
 var movies = [
   {title: 'Mean Girls'},
@@ -19,10 +20,10 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Movie List</h1>
         </header>
-        <p className="App-intro">
-          Here is a list of movies:
-        </p>
-        <div className="MovieList.js">
+        <div className="search">
+          <Search />
+        </div>
+        <div className="movie-list">
           <MovieList movies={movies} />
         </div>
       </div>
