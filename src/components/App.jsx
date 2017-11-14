@@ -3,6 +3,7 @@ import logo from '../logo.svg';
 import '../App.css';
 import MovieList from './MovieList.jsx';
 import Search from './Search.jsx';
+import AddToList from './AddToList.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -49,6 +50,7 @@ class App extends React.Component {
           <h1 className="App-title">Movie List</h1>
         </header>
         <div className="search">
+          <AddToList />
           <Search 
             filterMovies={this.filterMovies.bind(this)}
             handleInputChange={this.handleInputChange.bind(this)}
