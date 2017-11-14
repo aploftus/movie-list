@@ -9,31 +9,19 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      movies: [
-        {title: 'Mean Girls'},
-        {title: 'Hackers'},
-        {title: 'The Grey'},
-        {title: 'Sunshine'},
-        {title: 'Ex Machina'},
-      ],
-      shownMovies: [
-        {title: 'Mean Girls'},
-        {title: 'Hackers'},
-        {title: 'The Grey'},
-        {title: 'Sunshine'},
-        {title: 'Ex Machina'},
-      ],
+      movies: [],
+      shownMovies: [],
       query: '',
       titleToAdd: ''
     }
   }
 
-  handleSearchInputChange(query) {
-    this.setState({ query: query });
+  handleSearchInputChange(event) {
+    this.setState({ [event.target.id]: event.target.value });
   }
 
-  handleAddInputChange(title) {
-    this.setState({ titleToAdd: title });
+  handleAddInputChange(event) {
+    this.setState({ [event.target.id]: event.target.value });
   }
 
   filterMovies(event) {
@@ -43,7 +31,8 @@ class App extends React.Component {
     });
     event.preventDefault();
     this.setState({
-      shownMovies: filteredMovies
+      shownMovies: filteredMovies,
+      query: ''
     })
   }
 
@@ -53,7 +42,8 @@ class App extends React.Component {
     event.preventDefault();
     this.setState({ 
       movies: movies,
-      shownMovies: movies
+      shownMovies: movies,
+      titleToAdd: ''
     });
   }
 
@@ -67,8 +57,11 @@ class App extends React.Component {
         <div className="search">
           <AddToList
             addMovieToList={this.addMovieToList.bind(this)}
-            handleAddInputChange={this.handleAddInputChange.bind(this)} />
+            handleAddInputChange={this.handleAddInputChange.bind(this)}
+            title={this.state.titleToAdd}
+          />
           <Search 
+            query={this.state.query}
             filterMovies={this.filterMovies.bind(this)}
             handleSearchInputChange={this.handleSearchInputChange.bind(this)}
           />
@@ -80,5 +73,13 @@ class App extends React.Component {
     );
   }
 }
+
+// movies: [
+//   {title: 'Mean Girls'},
+//   {title: 'Hackers'},
+//   {title: 'The Grey'},
+//   {title: 'Sunshine'},
+//   {title: 'Ex Machina'},
+// ],
 
 export default App;

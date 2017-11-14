@@ -5,10 +5,11 @@ function AddToList(props) {
     <div>
       <form onSubmit={e => props.addMovieToList(e)}>
         <input 
-          id="add"
+          id="titleToAdd"
           type="text"
           placeholder="add movie title here..."
-          onChange={e => props.handleAddInputChange(e.target.value)}
+          value={props.titleToAdd}
+          onChange={e => props.handleAddInputChange(e)}
         />
         <button id="add-button">Add!</button>
       </form>
