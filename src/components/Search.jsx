@@ -8,7 +8,7 @@ function Search(props) {
           id="query"
           type="text"
           placeholder="search..."
-          onChange={e => props.handleInputChange(e.target.value)}
+          onChange={e => props.handleSearchInputChange(e.target.value)}
         />
         <button id="search-button">Go!</button>
       </form>

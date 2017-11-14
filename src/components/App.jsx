@@ -23,12 +23,17 @@ class App extends React.Component {
         {title: 'Sunshine'},
         {title: 'Ex Machina'},
       ],
-      query: ''
+      query: '',
+      titleToAdd: ''
     }
   }
 
-  handleInputChange(query) {
+  handleSearchInputChange(query) {
     this.setState({ query: query });
+  }
+
+  handleAddInputChange(title) {
+    this.setState({ titleToAdd: title });
   }
 
   filterMovies(event) {
@@ -42,6 +47,16 @@ class App extends React.Component {
     })
   }
 
+  addMovieToList(event) {
+    let movies = this.state.movies;
+    movies.push({title: this.state.titleToAdd });
+    event.preventDefault();
+    this.setState({ 
+      movies: movies,
+      shownMovies: movies
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -50,10 +65,12 @@ class App extends React.Component {
           <h1 className="App-title">Movie List</h1>
         </header>
         <div className="search">
-          <AddToList />
+          <AddToList
+            addMovieToList={this.addMovieToList.bind(this)}
+            handleAddInputChange={this.handleAddInputChange.bind(this)} />
           <Search 
             filterMovies={this.filterMovies.bind(this)}
-            handleInputChange={this.handleInputChange.bind(this)}
+            handleSearchInputChange={this.handleSearchInputChange.bind(this)}
           />
         </div>
         <div className="movie-list">
