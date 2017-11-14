@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 import logo from '../logo.svg';
 import '../App.css';
-import MovieList from './MovieList.js';
-import Search from './Search.js';
-
-var movies = [
-  {title: 'Mean Girls'},
-  {title: 'Hackers'},
-  {title: 'The Grey'},
-  {title: 'Sunshine'},
-  {title: 'Ex Machina'},
-];
+import MovieList from './MovieList.jsx';
+import Search from './Search.jsx';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      movies: [
+        {title: 'Mean Girls'},
+        {title: 'Hackers'},
+        {title: 'The Grey'},
+        {title: 'Sunshine'},
+        {title: 'Ex Machina'},
+      ]
+    }
+  }
   render() {
     return (
       <div className="App">
@@ -24,7 +28,7 @@ class App extends Component {
           <Search />
         </div>
         <div className="movie-list">
-          <MovieList movies={movies} />
+          <MovieList movies={this.state.movies} />
         </div>
       </div>
     );

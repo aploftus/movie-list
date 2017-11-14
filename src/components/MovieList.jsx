@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Movie from './Movie.js';
+import Movie from './Movie.jsx';
 // import _ from 'underscore';
 
 function MovieList({movies}) {

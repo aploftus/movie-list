@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-function Movie({movie}) {
+function Movie({movie, index}) {
   return <div className="movie-title">{movie.title}</div>
 }
 
