@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import logo from '../logo.svg';
 import '../App.css';
 import MovieList from './MovieList.jsx';
 import Search from './Search.jsx';
 
-class App extends Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,9 +14,33 @@ class App extends Component {
         {title: 'The Grey'},
         {title: 'Sunshine'},
         {title: 'Ex Machina'},
-      ]
+      ],
+      shownMovies: [
+        {title: 'Mean Girls'},
+        {title: 'Hackers'},
+        {title: 'The Grey'},
+        {title: 'Sunshine'},
+        {title: 'Ex Machina'},
+      ],
+      query: ''
     }
   }
+
+  handleInputChange(query) {
+    this.setState({ query: query });
+  }
+
+  filterMovies(event) {
+    let query = this.state.query;
+    let filteredMovies = this.state.movies.filter((movie) => {
+      return movie.title.toLowerCase().includes(query.toLowerCase());
+    });
+    event.preventDefault();
+    this.setState({
+      shownMovies: filteredMovies
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -25,10 +49,13 @@ class App extends Component {
           <h1 className="App-title">Movie List</h1>
         </header>
         <div className="search">
-          <Search />
+          <Search 
+            filterMovies={this.filterMovies.bind(this)}
+            handleInputChange={this.handleInputChange.bind(this)}
+          />
         </div>
         <div className="movie-list">
-          <MovieList movies={this.state.movies} />
+          <MovieList movies={this.state.shownMovies} />
         </div>
       </div>
     );

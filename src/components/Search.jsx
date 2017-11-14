@@ -1,14 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-function Search() {
+function Search(props) {
   return (
     <div>
-      <input 
-        id="query"
-        type="text"
-        placeholder="search..."
-      />
-      <button id="search-button">Go!</button>
+      <form onSubmit={(e) => props.filterMovies(e)}>
+        <input 
+          id="query"
+          type="text"
+          placeholder="search..."
+          onChange={e => props.handleInputChange(e.target.value)}
+        />
+        <button id="search-button">Go!</button>
+      </form>
     </div>
   )
 }
