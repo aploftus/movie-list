@@ -15,7 +15,11 @@ class MovieList extends React.Component {
     } else {
       return (
         this.props.movies.map((movie, index) => {
-          return <Movie movie={movie} key={index}/>
+          return <Movie
+            movie={movie}
+            key={index}
+            index={index}
+            toggleWatchStatus={this.props.toggleWatchStatus} />
         })
       )
     }

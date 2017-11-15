@@ -24,6 +24,15 @@ class App extends React.Component {
     this.setState({ [event.target.id]: event.target.value });
   }
 
+  toggleWatchStatus(index) {
+    let movies = this.state.movies;
+    movies[index].watched = !movies[index].watched
+    this.setState({ 
+      movies: movies,
+      shownMovies: movies,
+    });
+  }
+
   filterMovies(event) {
     let query = this.state.query;
     let filteredMovies = this.state.movies.filter((movie) => {
@@ -38,7 +47,7 @@ class App extends React.Component {
 
   addMovieToList(event) {
     let movies = this.state.movies;
-    movies.push({title: this.state.titleToAdd });
+    movies.push({ title: this.state.titleToAdd, watched: false });
     event.preventDefault();
     this.setState({ 
       movies: movies,
@@ -67,7 +76,10 @@ class App extends React.Component {
           />
         </div>
         <div className="movie-list">
-          <MovieList movies={this.state.shownMovies} />
+          <MovieList
+            movies={this.state.shownMovies} 
+            toggleWatchStatus={this.toggleWatchStatus.bind(this)}
+          />
         </div>
       </div>
     );
