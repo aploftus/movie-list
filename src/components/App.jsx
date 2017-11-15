@@ -4,6 +4,7 @@ import '../App.css';
 import MovieList from './MovieList.jsx';
 import Search from './Search.jsx';
 import AddToList from './AddToList.jsx';
+import WatchedFilter from './WatchedFilter.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class App extends React.Component {
     });
   }
 
-  filterMovies(event) {
+  searchMovies(event) {
     let query = this.state.query;
     let filteredMovies = this.state.movies.filter((movie) => {
       return movie.title.toLowerCase().includes(query.toLowerCase());
@@ -64,16 +65,19 @@ class App extends React.Component {
           <h1 className="App-title">Movie List</h1>
         </header>
         <div className="search">
-          <AddToList
+          <AddToList className="component"
             addMovieToList={this.addMovieToList.bind(this)}
             handleAddInputChange={this.handleAddInputChange.bind(this)}
             title={this.state.titleToAdd}
           />
-          <Search 
-            query={this.state.query}
-            filterMovies={this.filterMovies.bind(this)}
-            handleSearchInputChange={this.handleSearchInputChange.bind(this)}
-          />
+          <div>
+            <WatchedFilter className="component"/>
+            <Search className="component"
+              query={this.state.query}
+              searchMovies={this.searchMovies.bind(this)}
+              handleSearchInputChange={this.handleSearchInputChange.bind(this)}
+            />
+          </div>
         </div>
         <div className="movie-list">
           <MovieList

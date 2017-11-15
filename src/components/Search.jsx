@@ -2,8 +2,7 @@ import React from 'react';
 
 function Search(props) {
   return (
-    <div>
-      <form onSubmit={(e) => props.filterMovies(e)}>
+      <form onSubmit={(e) => props.searchMovies(e)}>
         <input 
           id="query"
           type="text"
@@ -13,7 +12,6 @@ function Search(props) {
         />
         <button id="search-button">Go!</button>
       </form>
-    </div>
   )
 }
 
