@@ -13,7 +13,8 @@ class App extends React.Component {
       movies: [],
       shownMovies: [],
       query: '',
-      titleToAdd: ''
+      titleToAdd: '',
+      filter: ''
     }
   }
 
@@ -26,11 +27,23 @@ class App extends React.Component {
   }
 
   toggleWatchStatus(index) {
-    let movies = this.state.movies;
+    let movies = this.state.movies.slice();
     movies[index].watched = !movies[index].watched
     this.setState({ 
       movies: movies,
       shownMovies: movies,
+    });
+  }
+
+  handleFilterClick(event) {
+    this.setState({ filter: event.target.value});
+    console.log(this.state.filter);
+    let filteredMovies = this.state.movies.filter(movie => {
+      return movie.watched === this.state.filter;
+    });
+    event.preventDefault();
+    this.setState({
+      shownMovies: filteredMovies,
     });
   }
 
@@ -43,7 +56,7 @@ class App extends React.Component {
     this.setState({
       shownMovies: filteredMovies,
       query: ''
-    })
+    });
   }
 
   addMovieToList(event) {
@@ -71,7 +84,9 @@ class App extends React.Component {
             title={this.state.titleToAdd}
           />
           <div>
-            <WatchedFilter className="component"/>
+            <WatchedFilter
+              className="component"
+              handleFilterClick={this.handleFilterClick.bind(this)}/>
             <Search className="component"
               query={this.state.query}
               searchMovies={this.searchMovies.bind(this)}
